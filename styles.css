@@ -29,15 +29,11 @@ body{
   padding: 0px;
 }
 
-.dumb-heading{
+.heading-selection{
   margin-top:60px;
   height:100%;
 }
 
-.inspiration-heading{
-  margin-top:80px;
-  height:100%;
-}
 
 .circle-button{
   border-radius: 90px;
