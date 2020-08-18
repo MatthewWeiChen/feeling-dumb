@@ -24,5 +24,19 @@ function generateSelection(event) {
     buttonRow.appendChild(topButton);
     container.appendChild(rowContainer);
     container.appendChild(buttonRow);
+    topButton.addEventListener('click', populatePage);
   }
+}
+
+function populatePage() {
+  let allHeadings = document.querySelectorAll('.heading-selection');
+  const allButtons = document.querySelectorAll('.circle-button');
+  for (let i = 0; i < allHeadings.length; i++) {
+    allHeadings[i].className = "hidden";
+    allButtons[i].className = "hidden";
+  }
+
+
+
+
 }
