@@ -1,0 +1,51 @@
+body{
+  background-color: #358597;
+  color: white;
+  font-family: 'Cookie', cursive;
+  height:100%;
+}
+.circle {
+  position:absolute;
+  width: 250px;
+  height: 250px;
+  line-height: 500px;
+  border-radius: 50%;
+  background: #F4A896;
+  z-index: -1;
+  margin-top:50px;
+}
+
+.heading{
+  margin-top: 140px;
+}
+
+.btn-css{
+  margin-top: 150px;
+  width: 250px;
+  background-color:#F4A896;
+  border-radius: 50px;
+  color: white;
+  font-size: 2em;
+  padding: 0px;
+}
+
+.dumb-heading{
+  margin-top:60px;
+  height:100%;
+}
+
+.inspiration-heading{
+  margin-top:80px;
+  height:100%;
+}
+
+.circle-button{
+  border-radius: 90px;
+  height:150px;
+  width: 150px;
+  font-size: 2em;
+  background-color: #F4A896;
+  color:white;
+  margin-top: 50px;
+  border-style: none;
+}
