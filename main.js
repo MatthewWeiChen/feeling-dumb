@@ -1,11 +1,13 @@
 const clickHereBtn = document.getElementById('click-here-btn')
-clickHereBtn.addEventListener('click', generateSelection);
+
 const hideThis = document.querySelectorAll('.hide-this');
 const container = document.querySelector('.container');
 const selectionInfo = [
   "Read a Dumb Quote",
   "Inspirational Quote"
 ]
+clickHereBtn.addEventListener('click', generateSelection);
+
 
 function generateSelection(event) {
   for (let i = 0; i < hideThis.length; i++) {
@@ -35,13 +37,13 @@ function generateSelection(event) {
 
 
 
-
-
+//for dumb quote
 
 function populateDumbPage(event) {
   const allHeadings = document.querySelectorAll('.heading-selection');
   const allButtons = document.querySelectorAll('.circle-button');
   const dumbTitle = document.createElement('h1');
+
 
   //hide elements
   for (let i = 0; i < allHeadings.length; i++) {
@@ -82,11 +84,18 @@ function populateDumbPage(event) {
   function handleError(err) {
     console.log(err);
   }
+
+  const createHome = document.createElement('button');
+  createHome.classList.add('return-home', 'btn-css');
+  createHome.textContent = "Return to Home"
+  createHome.addEventListener("click", returnHome);
+  container.append(createHome);
+
 }
 
 
 
-
+//for inspiring quote
 
 function populateInspirePage() {
   const allHeadings = document.querySelectorAll('.heading-selection');
@@ -129,4 +138,9 @@ function populateInspirePage() {
   function handleError(err) {
     console.log(err);
   }
+}
+
+function returnHome() {
+  const hideBox = document.querySelector('.quote-box')
+  hideBox.className = "hidden";
 }

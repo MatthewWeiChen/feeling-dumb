@@ -72,3 +72,8 @@ body{
   text-align: center;
 
 }
+
+.return-home{
+  bottom: 30px;
+  position: fixed;
+}
