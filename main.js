@@ -32,8 +32,8 @@ function generateSelection(event) {
   }
 
   let dumbQuoteBtn = document.querySelectorAll('button')[1];
-  let inspirationQuoteBtn = document.querySelectorAll('button')[2];
   dumbQuoteBtn.addEventListener("click", populateDumbPage);
+  let inspirationQuoteBtn = document.querySelectorAll('button')[2];
   inspirationQuoteBtn.addEventListener("click", populateInspirePage)
 }
 
@@ -42,19 +42,18 @@ function generateSelection(event) {
 //for dumb quote
 
 function populateDumbPage(event) {
-  const dumbTitle = document.createElement('h1');
+  const currentTitle = document.createElement('h1');
   const currentRows = document.querySelectorAll('.this-one');
 
-
   //hide elements
-  for (let i = 0; i < rows.length; i++) {
+  for (let i = 0; i < currentRows.length; i++) {
     currentRows[i].remove();
 
   }
   //create quote title
-  dumbTitle.textContent = "Dumb Quote";
-  dumbTitle.className = "quote-title";
-  container.append(dumbTitle);
+  currentTitle.textContent = "Dumb Quote";
+  currentTitle.className = "quote-title";
+  container.append(currentTitle);
 
   $.ajax({
     Method: "GET",
@@ -91,22 +90,20 @@ function populateDumbPage(event) {
 
 }
 
-
-
 //for inspiring quote
 
 function populateInspirePage() {
-  const dumbTitle = document.createElement('h1');
+  const currentTitle = document.createElement('h1');
   const currentRows = document.querySelectorAll('.this-one');
   //hide elements
-  for (let i = 0; i < rows.length; i++) {
+  for (let i = 0; i < currentRows.length; i++) {
     currentRows[i].remove();
 
   }
   //create quote title
-  dumbTitle.textContent = "Inspiring Quote";
-  dumbTitle.className = "quote-title";
-  container.append(dumbTitle);
+  currentTitle.textContent = "Inspiring Quote";
+  currentTitle.className = "quote-title";
+  container.append(currentTitle);
 
   $.ajax({
     Method: "GET",
