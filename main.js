@@ -1,5 +1,5 @@
 const clickHereBtn = document.getElementById('click-here-btn')
-
+const rows = document.querySelectorAll('.row');
 const hideThis = document.querySelectorAll('.hide-this');
 const container = document.querySelector('.container');
 const selectionInfo = [
@@ -11,16 +11,17 @@ clickHereBtn.addEventListener('click', generateSelection);
 
 function generateSelection(event) {
   for (let i = 0; i < hideThis.length; i++) {
-    hideThis[i].className = "hidden"
+    hideThis[i].classList.add("hidden");
   }
+
   for (let i = 0; i < selectionInfo.length; i++) {
     let rowContainer = document.createElement('div');
-    rowContainer.classList.add("row", "justify-content-center");
+    rowContainer.classList.add("row", "justify-content-center", "this-one");
     let dumbHeading = document.createElement('h1');
     dumbHeading.className = "heading-selection";
     dumbHeading.textContent = selectionInfo[i]
     let buttonRow = document.createElement('div');
-    buttonRow.classList.add("row", "justify-content-center");
+    buttonRow.classList.add("row", "justify-content-center", "this-one");
     let topButton = document.createElement('button');
     topButton.className = "circle-button";
     topButton.textContent = "Press";
@@ -29,6 +30,7 @@ function generateSelection(event) {
     container.appendChild(rowContainer);
     container.appendChild(buttonRow);
   }
+
   let dumbQuoteBtn = document.querySelectorAll('button')[1];
   dumbQuoteBtn.addEventListener("click", populateDumbPage);
   let inspirationQuoteBtn = document.querySelectorAll('button')[2];
@@ -40,15 +42,14 @@ function generateSelection(event) {
 //for dumb quote
 
 function populateDumbPage(event) {
-  const allHeadings = document.querySelectorAll('.heading-selection');
-  const allButtons = document.querySelectorAll('.circle-button');
   const dumbTitle = document.createElement('h1');
+  const rows = document.querySelectorAll('.this-one');
 
 
   //hide elements
-  for (let i = 0; i < allHeadings.length; i++) {
-    allHeadings[i].className = "hidden";
-    allButtons[i].className = "hidden";
+  for (let i = 0; i < rows.length; i++) {
+    rows[i].remove();
+
   }
   //create quote title
   dumbTitle.textContent = "Dumb Quote";
@@ -70,9 +71,6 @@ function populateDumbPage(event) {
     quoteBox.classList.add("quote-box", "row");
     quoteTextContainer.classList.add('quote-text-container')
     quoteText.classList.add("quote-text");
-    // const date = new Date(data.appeared_at);
-    // const year = date.getFullYear();
-    // const day = date.getDate();
     quoteText.innerText = `${data.value}
 
     -Donald Trump`;
@@ -98,14 +96,12 @@ function populateDumbPage(event) {
 //for inspiring quote
 
 function populateInspirePage() {
-  const allHeadings = document.querySelectorAll('.heading-selection');
-  const allButtons = document.querySelectorAll('.circle-button');
   const dumbTitle = document.createElement('h1');
-
+  const rows = document.querySelectorAll('.this-one');
   //hide elements
-  for (let i = 0; i < allHeadings.length; i++) {
-    allHeadings[i].className = "hidden";
-    allButtons[i].className = "hidden";
+  for (let i = 0; i < rows.length; i++) {
+    rows[i].remove();
+
   }
   //create quote title
   dumbTitle.textContent = "Inspiring Quote";
@@ -149,5 +145,13 @@ function populateInspirePage() {
 
 function returnHome() {
   const hideBox = document.querySelector('.quote-box')
-  hideBox.className = "hidden";
+  container.removeChild(hideBox);
+  const titleOfPage = document.querySelector('.quote-title');
+  container.removeChild(titleOfPage);
+  const homeButton = document.querySelector('.return-home');
+  container.removeChild(homeButton);
+
+  for (let i = 0; i < hideThis.length; i++) {
+    hideThis[i].classList.remove("hidden");
+  }
 }
