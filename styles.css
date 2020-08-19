@@ -34,7 +34,6 @@ body{
   height:100%;
 }
 
-
 .circle-button{
   border-radius: 90px;
   height:150px;
@@ -48,4 +47,28 @@ body{
 
 .hidden {
   display:none;
+}
+
+.quote-title{
+  text-align:center;
+  margin-top:10px;
+}
+
+.quote-box{
+  background-color: #F4A896;
+  position: absolute;
+  height:80%;
+}
+
+.quote-text-container{
+  margin-top: 30px;
+  font-size: 1.5em;
+  font-family: 'Playfair Display', serif;
+  width:80%;
+}
+
+.quote-text{
+  padding-left: 50px;
+  text-align: center;
+
 }
