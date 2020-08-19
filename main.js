@@ -138,6 +138,13 @@ function populateInspirePage() {
   function handleError(err) {
     console.log(err);
   }
+
+
+  const createHome = document.createElement('button');
+  createHome.classList.add('return-home', 'btn-css');
+  createHome.textContent = "Return to Home"
+  createHome.addEventListener("click", returnHome);
+  container.append(createHome);
 }
 
 function returnHome() {

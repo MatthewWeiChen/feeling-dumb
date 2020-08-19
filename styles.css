@@ -74,6 +74,7 @@ body{
 }
 
 .return-home{
-  bottom: 30px;
+  margin-left:70px;
+  bottom: 40px;
   position: fixed;
 }
