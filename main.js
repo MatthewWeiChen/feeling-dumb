@@ -32,8 +32,8 @@ function generateSelection(event) {
   }
 
   let dumbQuoteBtn = document.querySelectorAll('button')[1];
-  dumbQuoteBtn.addEventListener("click", populateDumbPage);
   let inspirationQuoteBtn = document.querySelectorAll('button')[2];
+  dumbQuoteBtn.addEventListener("click", populateDumbPage);
   inspirationQuoteBtn.addEventListener("click", populateInspirePage)
 }
 
@@ -43,12 +43,12 @@ function generateSelection(event) {
 
 function populateDumbPage(event) {
   const dumbTitle = document.createElement('h1');
-  const rows = document.querySelectorAll('.this-one');
+  const currentRows = document.querySelectorAll('.this-one');
 
 
   //hide elements
   for (let i = 0; i < rows.length; i++) {
-    rows[i].remove();
+    currentRows[i].remove();
 
   }
   //create quote title
@@ -97,10 +97,10 @@ function populateDumbPage(event) {
 
 function populateInspirePage() {
   const dumbTitle = document.createElement('h1');
-  const rows = document.querySelectorAll('.this-one');
+  const currentRows = document.querySelectorAll('.this-one');
   //hide elements
   for (let i = 0; i < rows.length; i++) {
-    rows[i].remove();
+    currentRows[i].remove();
 
   }
   //create quote title
