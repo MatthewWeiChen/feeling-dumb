@@ -132,7 +132,6 @@ function populateInspirePage() {
     console.log(err);
   }
 
-
   const createHome = document.createElement('button');
   createHome.classList.add('return-home', 'btn-css');
   createHome.textContent = "Return to Home"
