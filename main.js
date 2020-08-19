@@ -9,6 +9,8 @@ const selectionInfo = [
 clickHereBtn.addEventListener('click', generateSelection);
 
 
+//GENERATE SELECTIONS
+
 function generateSelection(event) {
   for (let i = 0; i < hideThis.length; i++) {
     hideThis[i].classList.add("hidden");
@@ -37,9 +39,7 @@ function generateSelection(event) {
   inspirationQuoteBtn.addEventListener("click", populateInspirePage)
 }
 
-
-
-//for dumb quote
+//FOR DUMB QUOTE PAGE
 
 function populateDumbPage(event) {
   const currentTitle = document.createElement('h1');
@@ -139,6 +139,9 @@ function populateInspirePage() {
   createHome.addEventListener("click", returnHome);
   container.append(createHome);
 }
+
+
+//*RETUN TO HOME BUTTON*//
 
 function returnHome() {
   const hideBox = document.querySelector('.quote-box')
