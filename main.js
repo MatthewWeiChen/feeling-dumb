@@ -83,7 +83,7 @@ function populateDumbPage(event) {
   }
 
   const createHome = document.createElement('button');
-  createHome.classList.add('return-home', 'btn-css', 'justify-content-center', 'row');
+  createHome.classList.add('return-home', 'btn-css', 'justify-content-center', 'row'); //have to append to a row not a container
   createHome.textContent = "Return to Home"
   createHome.addEventListener("click", returnHome);
   container.append(createHome);
