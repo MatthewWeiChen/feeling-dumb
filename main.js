@@ -39,7 +39,6 @@ function generateSelection(event) {
   inspirationQuoteBtn.addEventListener("click", populateInspirePage)
 }
 
-
 //*FOR DUMB QUOTE PAGE*//
 
 function populateDumbPage(event) {
@@ -85,8 +84,10 @@ function populateDumbPage(event) {
   }
 
   const createHome = document.createElement('button');
+
   const homeRow = document.createElement('div');
   homeRow.classList.add('row', 'justify-content-center', 'home-row')
+
   createHome.classList.add('return-home', 'btn-css', 'justify-content-center');
   createHome.textContent = "Return to Home"
   createHome.addEventListener("click", returnHome);
