@@ -38,19 +38,17 @@ function generateSelection(event) {
   let inspirationQuoteBtn = document.querySelectorAll('button')[2];
   inspirationQuoteBtn.addEventListener("click", populateInspirePage)
 }
-
-//FOR DUMB QUOTE PAGE
+//*FOR DUMB QUOTE PAGE*//
 
 function populateDumbPage(event) {
   const currentTitle = document.createElement('h1');
   const currentRows = document.querySelectorAll('.this-one');
 
-  //hide elements
   for (let i = 0; i < currentRows.length; i++) {
     currentRows[i].remove();
 
   }
-  //create quote title
+
   currentTitle.textContent = "Dumb Quote";
   currentTitle.className = "quote-title";
   container.append(currentTitle);
@@ -83,24 +81,25 @@ function populateDumbPage(event) {
   }
 
   const createHome = document.createElement('button');
-  createHome.classList.add('return-home', 'btn-css', 'justify-content-center', 'row'); //have to append to a row not a container
+  createHome.classList.add('return-home', 'btn-css', 'justify-content-center');
   createHome.textContent = "Return to Home"
   createHome.addEventListener("click", returnHome);
   container.append(createHome);
 
 }
 
-//for inspiring quote
+
+//*FOR INSPIRATION PAGE*//
 
 function populateInspirePage() {
   const currentTitle = document.createElement('h1');
   const currentRows = document.querySelectorAll('.this-one');
-  //hide elements
+
   for (let i = 0; i < currentRows.length; i++) {
     currentRows[i].remove();
 
   }
-  //create quote title
+
   currentTitle.textContent = "Inspiring Quote";
   currentTitle.className = "quote-title";
   container.append(currentTitle);
