@@ -83,7 +83,7 @@ function populateDumbPage(event) {
   }
 
   const createHome = document.createElement('button');
-  createHome.classList.add('return-home', 'btn-css');
+  createHome.classList.add('return-home', 'btn-css', 'justify-content-center', 'row');
   createHome.textContent = "Return to Home"
   createHome.addEventListener("click", returnHome);
   container.append(createHome);
@@ -133,7 +133,7 @@ function populateInspirePage() {
   }
 
   const createHome = document.createElement('button');
-  createHome.classList.add('return-home', 'btn-css');
+  createHome.classList.add('return-home', 'btn-css', 'justify-content-center');
   createHome.textContent = "Return to Home"
   createHome.addEventListener("click", returnHome);
   container.append(createHome);
