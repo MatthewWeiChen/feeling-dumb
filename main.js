@@ -2,7 +2,7 @@ const clickHereBtn = document.getElementById('click-here-btn')
 const rows = document.querySelectorAll('.row');
 const hideThis = document.querySelectorAll('.hide-this');
 const container = document.querySelector('.container');
-
+const currentRows = document.querySelectorAll('.selection-content');
 
 function showView(viewName) {
   const views = document.querySelectorAll('.view')
@@ -14,28 +14,21 @@ function showView(viewName) {
     }
   }
 }
-
 clickHereBtn.addEventListener('click', () => {
   showView('selection')
 })
 
 
-//   let dumbQuoteBtn = document.querySelectorAll('button')[1];
-//   dumbQuoteBtn.addEventListener("click", populateDumbPage);
-//   let inspirationQuoteBtn = document.querySelectorAll('button')[2];
-//   inspirationQuoteBtn.addEventListener("click", populateInspirePage)
-// }
-
-
+let dumbQuoteBtn = document.querySelectorAll('button')[1];
+dumbQuoteBtn.addEventListener("click", populateDumbPage);
+let inspirationQuoteBtn = document.querySelector('#go-to-inspire')
+inspirationQuoteBtn.addEventListener("click", populateInspirePage)
 
 
 function populateDumbPage(event) {
-  const currentTitle = document.createElement('h1');
-  const currentRows = document.querySelectorAll('.this-one');
-
+  const currentTitle = document.createElement('h1')
   for (let i = 0; i < currentRows.length; i++) {
     currentRows[i].remove();
-
   }
 
   currentTitle.textContent = "Dumb Quote";
@@ -49,48 +42,36 @@ function populateDumbPage(event) {
     error: handleError
   })
 
-  function handleSuccess(data) {
-    const quoteBox = document.createElement('div');
+  function handleSuccess(quote) {
+    const $quote = document.createElement('div');
     const quoteTextContainer = document.createElement('div');
     const quoteText = document.createElement('div');
     const quoteRow = document.createElement('div');
     quoteRow.classList.add('row', 'justify-content-center', 'quote-row')
-    quoteBox.classList.add("quote-box", "row", 'justify-content-center');
+    $quote.classList.add("quote-box", "row", 'justify-content-center');
     quoteTextContainer.classList.add('quote-text-container')
     quoteText.classList.add("quote-text");
-    quoteText.innerText = `${data.value}
+    quoteText.innerText = `${quote.value}
 
     -Donald Trump`;
-    quoteRow.append(quoteBox);
+    quoteRow.append($quote);
     quoteTextContainer.append(quoteText);
-    quoteBox.append(quoteTextContainer);
+    $quote.append(quoteTextContainer);
     container.append(quoteRow);
   }
 
   function handleError(err) {
     console.log(err);
   }
-
-  const createHome = document.createElement('button');
-  const homeRow = document.createElement('div');
-  homeRow.classList.add('row', 'justify-content-center', 'home-row')
-  createHome.classList.add('return-home', 'btn-custom', 'justify-content-center');
-  createHome.textContent = "Return to Home"
-  createHome.addEventListener("click", returnHome);
-  homeRow.append(createHome)
-  container.append(homeRow);
+  createHomeButton();
 
 }
 
 function populateInspirePage() {
   const currentTitle = document.createElement('h1');
-  const currentRows = document.querySelectorAll('.this-one');
-
   for (let i = 0; i < currentRows.length; i++) {
     currentRows[i].remove();
-
   }
-
   currentTitle.textContent = "Inspiring Quote";
   currentTitle.className = "quote-title";
   container.append(currentTitle);
@@ -102,37 +83,28 @@ function populateInspirePage() {
     error: handleError
   })
 
-  function handleSuccess(data) {
-    const quoteBox = document.createElement('div');
+  function handleSuccess(quote) {
+    const $quote = document.createElement('div');
     const quoteTextContainer = document.createElement('div');
     const quoteText = document.createElement('div');
     const quoteRow = document.createElement('div');
     quoteRow.classList.add('row', 'justify-content-center', 'quote-row')
-    quoteBox.classList.add("quote-box", "row", 'justify-content-center');
+    $quote.classList.add("quote-box", "row", 'justify-content-center');
     quoteTextContainer.classList.add('quote-text-container')
     quoteText.classList.add("quote-text");
-    quoteText.innerText = `${data.quote.quoteText}
+    quoteText.innerText = `${quote.quote.quoteText}
 
-    -${data.quote.quoteAuthor}`;
-    quoteRow.append(quoteBox);
+    -${quote.quote.quoteAuthor}`;
+    quoteRow.append($quote);
     quoteTextContainer.append(quoteText);
-    quoteBox.append(quoteTextContainer);
+    $quote.append(quoteTextContainer);
     container.append(quoteRow);
   }
 
   function handleError(err) {
     console.log(err);
   }
-
-  const createHome = document.createElement('button');
-  const homeRow = document.createElement('div');
-  homeRow.classList.add('row', 'justify-content-center', 'home-row')
-  createHome.classList.add('return-home', 'btn-custom', 'justify-content-center');
-  createHome.textContent = "Return to Home"
-  createHome.addEventListener("click", returnHome);
-  homeRow.append(createHome)
-  container.append(homeRow);
-
+  createHomeButton();
 }
 
 function returnHome() {
@@ -146,4 +118,15 @@ function returnHome() {
   for (let i = 0; i < hideThis.length; i++) {
     hideThis[i].classList.remove("hidden");
   }
+}
+
+function createHomeButton() {
+  const createHome = document.createElement('button')
+  const homeRow = document.createElement('div')
+  homeRow.classList.add('row', 'justify-content-center', 'home-row')
+  createHome.classList.add('return-home', 'btn-custom', 'justify-content-center')
+  createHome.textContent = "Return to Home"
+  createHome.addEventListener("click", returnHome)
+  homeRow.append(createHome)
+  container.append(homeRow)
 }
