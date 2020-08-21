@@ -8,9 +8,6 @@ const selectionInfo = [
 ]
 clickHereBtn.addEventListener('click', generateSelection);
 
-
-//GENERATE SELECTIONS
-
 function generateSelection(event) {
   for (let i = 0; i < hideThis.length; i++) {
     hideThis[i].classList.add("hidden");
@@ -39,7 +36,8 @@ function generateSelection(event) {
   inspirationQuoteBtn.addEventListener("click", populateInspirePage)
 }
 
-//*FOR DUMB QUOTE PAGE*//
+
+
 
 function populateDumbPage(event) {
   const currentTitle = document.createElement('h1');
@@ -86,16 +84,13 @@ function populateDumbPage(event) {
   const createHome = document.createElement('button');
   const homeRow = document.createElement('div');
   homeRow.classList.add('row', 'justify-content-center', 'home-row')
-  createHome.classList.add('return-home', 'btn-css', 'justify-content-center');
+  createHome.classList.add('return-home', 'btn-custom', 'justify-content-center');
   createHome.textContent = "Return to Home"
   createHome.addEventListener("click", returnHome);
   homeRow.append(createHome)
   container.append(homeRow);
 
 }
-
-
-//*FOR INSPIRATION PAGE*//
 
 function populateInspirePage() {
   const currentTitle = document.createElement('h1');
@@ -142,16 +137,13 @@ function populateInspirePage() {
   const createHome = document.createElement('button');
   const homeRow = document.createElement('div');
   homeRow.classList.add('row', 'justify-content-center', 'home-row')
-  createHome.classList.add('return-home', 'btn-css', 'justify-content-center');
+  createHome.classList.add('return-home', 'btn-custom', 'justify-content-center');
   createHome.textContent = "Return to Home"
   createHome.addEventListener("click", returnHome);
   homeRow.append(createHome)
   container.append(homeRow);
 
 }
-
-
-//*RETUN TO HOME BUTTON*//
 
 function returnHome() {
   const hideRow = document.querySelector('.quote-row')
