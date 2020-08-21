@@ -27,13 +27,11 @@ inspirationQuoteBtn.addEventListener("click", populateInspirePage)
 
 function populateDumbPage(event) {
   const currentTitle = document.createElement('h1')
-  for (let i = 0; i < currentRows.length; i++) {
-    currentRows[i].remove();
-  }
-
+  showView(!'selection')
   currentTitle.textContent = "Dumb Quote";
   currentTitle.className = "quote-title";
   container.append(currentTitle);
+
 
   $.ajax({
     Method: "GET",
@@ -48,7 +46,7 @@ function populateDumbPage(event) {
     const quoteText = document.createElement('div');
     const quoteRow = document.createElement('div');
     quoteRow.classList.add('row', 'justify-content-center', 'quote-row')
-    $quote.classList.add("quote-box", "row", 'justify-content-center');
+    $quote.classList.add("quote-box", "row", 'justify-content-center', 'view');
     quoteTextContainer.classList.add('quote-text-container')
     quoteText.classList.add("quote-text");
     quoteText.innerText = `${quote.value}
@@ -64,14 +62,11 @@ function populateDumbPage(event) {
     console.log(err);
   }
   createHomeButton();
-
 }
 
 function populateInspirePage() {
   const currentTitle = document.createElement('h1');
-  for (let i = 0; i < currentRows.length; i++) {
-    currentRows[i].remove();
-  }
+  showView(!'selection')
   currentTitle.textContent = "Inspiring Quote";
   currentTitle.className = "quote-title";
   container.append(currentTitle);
@@ -89,7 +84,7 @@ function populateInspirePage() {
     const quoteText = document.createElement('div');
     const quoteRow = document.createElement('div');
     quoteRow.classList.add('row', 'justify-content-center', 'quote-row')
-    $quote.classList.add("quote-box", "row", 'justify-content-center');
+    $quote.classList.add("quote-box", "row", 'justify-content-center', 'view');
     quoteTextContainer.classList.add('quote-text-container')
     quoteText.classList.add("quote-text");
     quoteText.innerText = `${quote.quote.quoteText}
@@ -115,9 +110,10 @@ function returnHome() {
   const homeRow = document.querySelector('.home-row');
   container.removeChild(homeRow);
 
-  for (let i = 0; i < hideThis.length; i++) {
-    hideThis[i].classList.remove("hidden");
-  }
+  showView('home');
+  // for (let i = 0; i < hideThis.length; i++) {
+  //   hideThis[i].classList.remove("hidden");
+  // }
 }
 
 function createHomeButton() {
