@@ -18,7 +18,6 @@ clickHereBtn.addEventListener('click', () => {
   showView('selection')
 })
 
-
 let dumbQuoteBtn = document.querySelectorAll('button')[1];
 dumbQuoteBtn.addEventListener("click", populateDumbPage);
 let inspirationQuoteBtn = document.querySelector('#go-to-inspire')
@@ -27,7 +26,7 @@ inspirationQuoteBtn.addEventListener("click", populateInspirePage)
 
 function populateDumbPage(event) {
   const currentTitle = document.createElement('h1')
-  showView(!'selection')
+  showView('on purpose to fail')
   currentTitle.textContent = "Dumb Quote";
   currentTitle.className = "quote-title";
   container.append(currentTitle);
@@ -36,11 +35,11 @@ function populateDumbPage(event) {
   $.ajax({
     Method: "GET",
     url: "https://tronalddump.io/random/quote",
-    success: handleSuccess,
-    error: handleError
+    success: quoteReceived,
+    error: quoteRetrievalFailed
   })
 
-  function handleSuccess(quote) {
+  function quoteReceived(quote) {
     const $quote = document.createElement('div');
     const quoteTextContainer = document.createElement('div');
     const quoteText = document.createElement('div');
@@ -58,7 +57,7 @@ function populateDumbPage(event) {
     container.append(quoteRow);
   }
 
-  function handleError(err) {
+  function quoteRetrievalFailed(err) {
     console.log(err);
   }
   createHomeButton();
@@ -74,11 +73,11 @@ function populateInspirePage() {
   $.ajax({
     Method: "GET",
     url: "https://quote-garden.herokuapp.com/api/v2/quotes/random",
-    success: handleSuccess,
-    error: handleError
+    success: quoteReceived,
+    error: quoteRetrievalFailed
   })
 
-  function handleSuccess(quote) {
+  function quoteReceived(quote) {
     const $quote = document.createElement('div');
     const quoteTextContainer = document.createElement('div');
     const quoteText = document.createElement('div');
@@ -94,9 +93,15 @@ function populateInspirePage() {
     quoteTextContainer.append(quoteText);
     $quote.append(quoteTextContainer);
     container.append(quoteRow);
+
+    window.addEventListener('load', () => {
+      const loader = document.querySelector('.cs-loader');
+      loader.classList.add('hidden');
+    })
+
   }
 
-  function handleError(err) {
+  function quoteRetrievalFailed(err) {
     console.log(err);
   }
   createHomeButton();
@@ -111,9 +116,6 @@ function returnHome() {
   container.removeChild(homeRow);
 
   showView('home');
-  // for (let i = 0; i < hideThis.length; i++) {
-  //   hideThis[i].classList.remove("hidden");
-  // }
 }
 
 function createHomeButton() {
@@ -126,3 +128,8 @@ function createHomeButton() {
   homeRow.append(createHome)
   container.append(homeRow)
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  const loader = document.querySelector('.cs-loader');
+  loader.classList.add('hidden');
+})

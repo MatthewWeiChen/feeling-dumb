@@ -5,18 +5,17 @@ html, body{
   height: 100%;
 }
 .circle {
-  position:absolute;
   width: 250px;
   height: 250px;
   line-height: 500px;
   border-radius: 50%;
-  margin-top:50px;
+  margin-top:40px;
   background: linear-gradient(#F4A896, rgb(218, 167, 216));
 }
 
 .heading{
-  margin-top: 140px;
-  z-index:2;
+  position:absolute;
+  margin-top:50px;
 }
 
 .btn-custom{
@@ -61,6 +60,7 @@ html, body{
   position: absolute;
   height:80%;
   opacity: 95%;
+  width: 100%;
 }
 
 .quote-text-container{
@@ -108,8 +108,81 @@ html, body{
   0%{
       transform: translate3d(0,0,0)
     }
-
   100%{
       transform: translate3d(-100%,0,0)
     }
+}
+
+.cs-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30%;
+  width: 30%;
+}
+
+.cs-loader-inner {
+  transform: translateY(-50%);
+  top: 50%;
+  position: absolute;
+  width: calc(100% - 200px);
+  color: #FFF;
+  padding: 0 100px;
+  text-align: center;
+}
+
+.cs-loader-inner label {
+  font-size: 20px;
+  opacity: 0;
+  display:inline-block;
+}
+
+@keyframes lol {
+  0% {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+  33% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  66% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+}
+
+
+.cs-loader-inner label:nth-child(6) {
+
+  animation: lol 3s infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(5) {
+
+  animation: lol 3s 100ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(4) {
+
+  animation: lol 3s 200ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(3) {
+
+  animation: lol 3s 300ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(2) {
+
+  animation: lol 3s 400ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(1) {
+
+  animation: lol 3s 500ms infinite ease-in-out;
 }
