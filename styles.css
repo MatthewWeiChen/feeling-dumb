@@ -34,7 +34,6 @@ body {
 
 .heading-selection {
   margin-top: 60px;
-  height: 100%;
 }
 
 .circle-button {
@@ -67,13 +66,13 @@ body {
 
 .quote-text-container {
   margin-top: 30px;
-  font-size: 1.5em;
-  font-family: 'Playfair Display', serif;
   width: 80%;
 }
 
 .quote-text {
   text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5em;
 }
 
 .return-home {
@@ -153,4 +152,9 @@ body {
 
 .loader-container {
   height: 100%
+}
+
+.absolute-position {
+  position: absolute;
+  margin-left: 100px;
 }

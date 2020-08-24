@@ -65,7 +65,30 @@ function populateDumbPage(event) {
   }
 
   function quoteRetrievalFailed(err) {
-    console.log(err);
+    const $error = document.createElement('div');
+    const $errorBtn = document.createElement('button');
+    $errorBtn.classList.add('btn-custom', 'absolute-position')
+    $errorBtn.append($error);
+    $error.textContent = "Error - Try Again"
+    container.append($errorBtn);
+
+    $errorBtn.addEventListener('click', () => {
+      $.ajax({
+        Method: "GET",
+        url: "https://tronalddump.io/random/quote",
+        beforeSend: function () {
+          $("#loader").removeClass('hidden');
+        },
+        success: function (quote) {
+          $errorBtn.remove();
+          quoteReceived(quote);
+        },
+        complete: function () {
+          $("#loader").addClass('hidden');
+        },
+      })
+    })
+
   }
   createHomeButton();
 }
@@ -79,7 +102,6 @@ function populateInspirePage() {
   container.append(currentTitle);
 
   $.ajax({
-
     Method: "GET",
     url: "https://quote-garden.herokuapp.com/api/v2/quotes/random",
     beforeSend: function () {
@@ -93,7 +115,6 @@ function populateInspirePage() {
   })
 
   function quoteReceived(quote) {
-
     const $quote = document.createElement('div');
     const quoteTextContainer = document.createElement('div');
     const quoteText = document.createElement('div');
@@ -112,7 +133,29 @@ function populateInspirePage() {
   }
 
   function quoteRetrievalFailed(err) {
-    console.log(err);
+    const $error = document.createElement('div');
+    const $errorBtn = document.createElement('button');
+    $errorBtn.classList.add('btn-custom', 'absolute-position')
+    $errorBtn.append($error);
+    $error.textContent = "Error - Try Again"
+    container.append($errorBtn);
+
+    $errorBtn.addEventListener('click', () => {
+      $.ajax({
+        Method: "GET",
+        url: "https://quote-garden.herokuapp.com/api/v2/quotes/random",
+        beforeSend: function () {
+          $("#loader").removeClass('hidden');
+        },
+        success: function (quote) {
+          $errorBtn.remove();
+          quoteReceived(quote);
+        },
+        complete: function () {
+          $("#loader").addClass('hidden');
+        },
+      })
+    })
   }
   createHomeButton();
 }

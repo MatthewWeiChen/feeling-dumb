@@ -63,7 +63,28 @@ function populateDumbPage(event) {
   }
 
   function quoteRetrievalFailed(err) {
-    console.log(err);
+    var $error = document.createElement('div');
+    var $errorBtn = document.createElement('button');
+    $errorBtn.classList.add('btn-custom', 'absolute-position');
+    $errorBtn.append($error);
+    $error.textContent = "Error - Try Again";
+    container.append($errorBtn);
+    $errorBtn.addEventListener('click', function () {
+      $.ajax({
+        Method: "GET",
+        url: "https://tronalddump.io/random/quote",
+        beforeSend: function beforeSend() {
+          $("#loader").removeClass('hidden');
+        },
+        success: function success(quote) {
+          $errorBtn.remove();
+          quoteReceived(quote);
+        },
+        complete: function complete() {
+          $("#loader").addClass('hidden');
+        }
+      });
+    });
   }
 
   createHomeButton();
@@ -105,7 +126,28 @@ function populateInspirePage() {
   }
 
   function quoteRetrievalFailed(err) {
-    console.log(err);
+    var $error = document.createElement('div');
+    var $errorBtn = document.createElement('button');
+    $errorBtn.classList.add('btn-custom', 'absolute-position');
+    $errorBtn.append($error);
+    $error.textContent = "Error - Try Again";
+    container.append($errorBtn);
+    $errorBtn.addEventListener('click', function () {
+      $.ajax({
+        Method: "GET",
+        url: "https://quote-garden.herokuapp.com/api/v2/quotes/random",
+        beforeSend: function beforeSend() {
+          $("#loader").removeClass('hidden');
+        },
+        success: function success(quote) {
+          $errorBtn.remove();
+          quoteReceived(quote);
+        },
+        complete: function complete() {
+          $("#loader").addClass('hidden');
+        }
+      });
+    });
   }
 
   createHomeButton();
