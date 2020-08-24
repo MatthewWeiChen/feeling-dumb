@@ -2,110 +2,101 @@ const clickHereBtn = document.getElementById('click-here-btn')
 const rows = document.querySelectorAll('.row');
 const hideThis = document.querySelectorAll('.hide-this');
 const container = document.querySelector('.container');
-const selectionInfo = [
-  "Read a Dumb Quote",
-  "Inspirational Quote"
-]
-clickHereBtn.addEventListener('click', generateSelection);
+const currentRows = document.querySelectorAll('.selection-content');
+const loader = document.getElementById('loader');
 
-
-//GENERATE SELECTIONS
-
-function generateSelection(event) {
-  for (let i = 0; i < hideThis.length; i++) {
-    hideThis[i].classList.add("hidden");
+function showView(viewName) {
+  const views = document.querySelectorAll('.view')
+  for (let i = 0; i < views.length; i++) {
+    if (views[i].dataset.viewName === viewName) {
+      views[i].classList.remove('hidden')
+    } else {
+      views[i].classList.add('hidden')
+    }
   }
-
-  for (let i = 0; i < selectionInfo.length; i++) {
-    let rowContainer = document.createElement('div');
-    rowContainer.classList.add("row", "justify-content-center", "this-one");
-    let dumbHeading = document.createElement('h1');
-    dumbHeading.className = "heading-selection";
-    dumbHeading.textContent = selectionInfo[i]
-    let buttonRow = document.createElement('div');
-    buttonRow.classList.add("row", "justify-content-center", "this-one");
-    let topButton = document.createElement('button');
-    topButton.className = "circle-button";
-    topButton.textContent = "Press";
-    rowContainer.appendChild(dumbHeading);
-    buttonRow.appendChild(topButton);
-    container.appendChild(rowContainer);
-    container.appendChild(buttonRow);
-  }
-
-  let dumbQuoteBtn = document.querySelectorAll('button')[1];
-  dumbQuoteBtn.addEventListener("click", populateDumbPage);
-  let inspirationQuoteBtn = document.querySelectorAll('button')[2];
-  inspirationQuoteBtn.addEventListener("click", populateInspirePage)
 }
+clickHereBtn.addEventListener('click', () => {
+  showView('selection')
+})
 
-//*FOR DUMB QUOTE PAGE*//
+let dumbQuoteBtn = document.querySelectorAll('button')[1];
+dumbQuoteBtn.addEventListener("click", populateDumbPage);
+let inspirationQuoteBtn = document.querySelector('#go-to-inspire')
+inspirationQuoteBtn.addEventListener("click", populateInspirePage)
+
 
 function populateDumbPage(event) {
-  const currentTitle = document.createElement('h1');
-  const currentRows = document.querySelectorAll('.this-one');
-
-  for (let i = 0; i < currentRows.length; i++) {
-    currentRows[i].remove();
-
-  }
-
+  const currentTitle = document.createElement('h1')
+  showView('on purpose to fail')
   currentTitle.textContent = "Dumb Quote";
   currentTitle.className = "quote-title";
   container.append(currentTitle);
 
+
   $.ajax({
     Method: "GET",
     url: "https://tronalddump.io/random/quote",
-    success: handleSuccess,
-    error: handleError
+    beforeSend: function () {
+      $("#loader").removeClass('hidden');
+    },
+    success: quoteReceived,
+    complete: function () {
+      $("#loader").addClass('hidden');
+    },
+    error: quoteRetrievalFailed
   })
 
-  function handleSuccess(data) {
-    const quoteBox = document.createElement('div');
+  function quoteReceived(quote) {
+    const $quote = document.createElement('div');
     const quoteTextContainer = document.createElement('div');
     const quoteText = document.createElement('div');
     const quoteRow = document.createElement('div');
     quoteRow.classList.add('row', 'justify-content-center', 'quote-row')
-    quoteBox.classList.add("quote-box", "row", 'justify-content-center');
+    $quote.classList.add("quote-box", "row", 'justify-content-center', 'view');
     quoteTextContainer.classList.add('quote-text-container')
     quoteText.classList.add("quote-text");
-    quoteText.innerText = `${data.value}
+    quoteText.innerText = `${quote.value}
 
     -Donald Trump`;
-    quoteRow.append(quoteBox);
+    quoteRow.append($quote);
     quoteTextContainer.append(quoteText);
-    quoteBox.append(quoteTextContainer);
+    $quote.append(quoteTextContainer);
     container.append(quoteRow);
   }
 
-  function handleError(err) {
-    console.log(err);
+  function quoteRetrievalFailed(err) {
+    const $error = document.createElement('div');
+    const $errorBtn = document.createElement('button');
+    $errorBtn.classList.add('btn-custom', 'absolute-position')
+    $errorBtn.append($error);
+    $error.textContent = "Error - Try Again"
+    container.append($errorBtn);
+
+    $errorBtn.addEventListener('click', () => {
+      $.ajax({
+        Method: "GET",
+        url: "https://tronalddump.io/random/quote",
+        beforeSend: function () {
+          $("#loader").removeClass('hidden');
+        },
+        success: function (quote) {
+          $errorBtn.remove();
+          quoteReceived(quote);
+        },
+        complete: function () {
+          $("#loader").addClass('hidden');
+        },
+      })
+    })
+
   }
-
-  const createHome = document.createElement('button');
-  const homeRow = document.createElement('div');
-  homeRow.classList.add('row', 'justify-content-center', 'home-row')
-  createHome.classList.add('return-home', 'btn-css', 'justify-content-center');
-  createHome.textContent = "Return to Home"
-  createHome.addEventListener("click", returnHome);
-  homeRow.append(createHome)
-  container.append(homeRow);
-
+  createHomeButton();
 }
 
-
-//*FOR INSPIRATION PAGE*//
-
 function populateInspirePage() {
+
   const currentTitle = document.createElement('h1');
-  const currentRows = document.querySelectorAll('.this-one');
-
-  for (let i = 0; i < currentRows.length; i++) {
-    currentRows[i].remove();
-
-  }
-
+  showView(!'selection')
   currentTitle.textContent = "Inspiring Quote";
   currentTitle.className = "quote-title";
   container.append(currentTitle);
@@ -113,45 +104,61 @@ function populateInspirePage() {
   $.ajax({
     Method: "GET",
     url: "https://quote-garden.herokuapp.com/api/v2/quotes/random",
-    success: handleSuccess,
-    error: handleError
+    beforeSend: function () {
+      $("#loader").removeClass('hidden');
+    },
+    success: quoteReceived,
+    complete: function () {
+      $("#loader").addClass('hidden');
+    },
+    error: quoteRetrievalFailed
   })
 
-  function handleSuccess(data) {
-    const quoteBox = document.createElement('div');
+  function quoteReceived(quote) {
+    const $quote = document.createElement('div');
     const quoteTextContainer = document.createElement('div');
     const quoteText = document.createElement('div');
     const quoteRow = document.createElement('div');
     quoteRow.classList.add('row', 'justify-content-center', 'quote-row')
-    quoteBox.classList.add("quote-box", "row", 'justify-content-center');
+    $quote.classList.add("quote-box", "row", 'justify-content-center', 'view');
     quoteTextContainer.classList.add('quote-text-container')
     quoteText.classList.add("quote-text");
-    quoteText.innerText = `${data.quote.quoteText}
+    quoteText.innerText = `${quote.quote.quoteText}
 
-    -${data.quote.quoteAuthor}`;
-    quoteRow.append(quoteBox);
+    -${quote.quote.quoteAuthor}`;
+    quoteRow.append($quote);
     quoteTextContainer.append(quoteText);
-    quoteBox.append(quoteTextContainer);
+    $quote.append(quoteTextContainer);
     container.append(quoteRow);
   }
 
-  function handleError(err) {
-    console.log(err);
+  function quoteRetrievalFailed(err) {
+    const $error = document.createElement('div');
+    const $errorBtn = document.createElement('button');
+    $errorBtn.classList.add('btn-custom', 'absolute-position')
+    $errorBtn.append($error);
+    $error.textContent = "Error - Try Again"
+    container.append($errorBtn);
+
+    $errorBtn.addEventListener('click', () => {
+      $.ajax({
+        Method: "GET",
+        url: "https://quote-garden.herokuapp.com/api/v2/quotes/random",
+        beforeSend: function () {
+          $("#loader").removeClass('hidden');
+        },
+        success: function (quote) {
+          $errorBtn.remove();
+          quoteReceived(quote);
+        },
+        complete: function () {
+          $("#loader").addClass('hidden');
+        },
+      })
+    })
   }
-
-  const createHome = document.createElement('button');
-  const homeRow = document.createElement('div');
-  homeRow.classList.add('row', 'justify-content-center', 'home-row')
-  createHome.classList.add('return-home', 'btn-css', 'justify-content-center');
-  createHome.textContent = "Return to Home"
-  createHome.addEventListener("click", returnHome);
-  homeRow.append(createHome)
-  container.append(homeRow);
-
+  createHomeButton();
 }
-
-
-//*RETUN TO HOME BUTTON*//
 
 function returnHome() {
   const hideRow = document.querySelector('.quote-row')
@@ -161,7 +168,16 @@ function returnHome() {
   const homeRow = document.querySelector('.home-row');
   container.removeChild(homeRow);
 
-  for (let i = 0; i < hideThis.length; i++) {
-    hideThis[i].classList.remove("hidden");
-  }
+  showView('home');
+}
+
+function createHomeButton() {
+  const createHome = document.createElement('button')
+  const homeRow = document.createElement('div')
+  homeRow.classList.add('row', 'justify-content-center', 'home-row')
+  createHome.classList.add('return-home', 'btn-custom', 'justify-content-center')
+  createHome.textContent = "Return to Home"
+  createHome.addEventListener("click", returnHome)
+  homeRow.append(createHome)
+  container.append(homeRow)
 }
