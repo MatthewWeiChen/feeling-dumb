@@ -3,6 +3,7 @@ const rows = document.querySelectorAll('.row');
 const hideThis = document.querySelectorAll('.hide-this');
 const container = document.querySelector('.container');
 const currentRows = document.querySelectorAll('.selection-content');
+const loader = document.getElementById('loader');
 
 function showView(viewName) {
   const views = document.querySelectorAll('.view')
@@ -35,7 +36,13 @@ function populateDumbPage(event) {
   $.ajax({
     Method: "GET",
     url: "https://tronalddump.io/random/quote",
+    beforeSend: function () {
+      $("#loader").removeClass('hidden');
+    },
     success: quoteReceived,
+    complete: function () {
+      $("#loader").addClass('hidden');
+    },
     error: quoteRetrievalFailed
   })
 
@@ -64,6 +71,7 @@ function populateDumbPage(event) {
 }
 
 function populateInspirePage() {
+
   const currentTitle = document.createElement('h1');
   showView(!'selection')
   currentTitle.textContent = "Inspiring Quote";
@@ -71,13 +79,21 @@ function populateInspirePage() {
   container.append(currentTitle);
 
   $.ajax({
+
     Method: "GET",
     url: "https://quote-garden.herokuapp.com/api/v2/quotes/random",
+    beforeSend: function () {
+      $("#loader").removeClass('hidden');
+    },
     success: quoteReceived,
+    complete: function () {
+      $("#loader").addClass('hidden');
+    },
     error: quoteRetrievalFailed
   })
 
   function quoteReceived(quote) {
+
     const $quote = document.createElement('div');
     const quoteTextContainer = document.createElement('div');
     const quoteText = document.createElement('div');
@@ -93,12 +109,6 @@ function populateInspirePage() {
     quoteTextContainer.append(quoteText);
     $quote.append(quoteTextContainer);
     container.append(quoteRow);
-
-    window.addEventListener('load', () => {
-      const loader = document.querySelector('.cs-loader');
-      loader.classList.add('hidden');
-    })
-
   }
 
   function quoteRetrievalFailed(err) {
@@ -128,8 +138,3 @@ function createHomeButton() {
   homeRow.append(createHome)
   container.append(homeRow)
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-  const loader = document.querySelector('.cs-loader');
-  loader.classList.add('hidden');
-})

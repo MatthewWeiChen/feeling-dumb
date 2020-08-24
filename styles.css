@@ -1,24 +1,26 @@
-html, body{
+html,
+body {
   background-image: linear-gradient(#358597, #8fcad6);
   color: white;
   font-family: 'Cookie', cursive;
   height: 100%;
 }
+
 .circle {
   width: 250px;
   height: 250px;
   line-height: 500px;
   border-radius: 50%;
-  margin-top:40px;
+  margin-top: 40px;
   background: linear-gradient(#F4A896, rgb(218, 167, 216));
 }
 
-.heading{
-  position:absolute;
-  margin-top:50px;
+.heading {
+  position: absolute;
+  margin-top: 50px;
 }
 
-.btn-custom{
+.btn-custom {
   margin-top: 150px;
   width: 200px;
   border-radius: 50px;
@@ -26,55 +28,55 @@ html, body{
   font-size: 2em;
   padding: 0px;
   cursor: pointer;
-  background: linear-gradient(90deg,#F4A896, rgb(218, 167, 216));
+  background: linear-gradient(90deg, #F4A896, rgb(218, 167, 216));
   border-style: none;
 }
 
-.heading-selection{
-  margin-top:60px;
-  height:100%;
+.heading-selection {
+  margin-top: 60px;
+  height: 100%;
 }
 
-.circle-button{
+.circle-button {
   border-radius: 90px;
-  height:150px;
+  height: 150px;
   width: 150px;
   font-size: 2em;
-  color:white;
+  color: white;
   margin-top: 50px;
   border-style: none;
   background: linear-gradient(#F4A896, rgb(218, 167, 216));
 }
 
 .hidden {
-  display:none;
+  display: none;
 }
 
-.quote-title{
-  text-align:center;
-  margin-top:10px;
+.quote-title {
+  text-align: center;
+  margin-top: 10px;
 }
 
-.quote-box{
+.quote-box {
   background-color: #F4A896;
   position: absolute;
-  height:80%;
+  height: 80%;
   opacity: 95%;
   width: 100%;
 }
 
-.quote-text-container{
+.quote-text-container {
   margin-top: 30px;
   font-size: 1.5em;
   font-family: 'Playfair Display', serif;
-  width:80%;
+  width: 80%;
 }
 
-.quote-text{
+.quote-text {
   text-align: center;
 }
 
-.return-home{
+.return-home {
   bottom: 20px;
   position: absolute;
 }
@@ -82,22 +84,22 @@ html, body{
 .wt-btn_sign:hover {
   color: #ffde7d;
   background: #f6416c;
-  }
+}
 
 .wt-btn_sign-bound {
-    display: block;
-    overflow: hidden;
+  display: block;
+  overflow: hidden;
 }
 
 .wt-btn_sign-bound span {
   position: relative;
   display: inline-block;
-  padding:0 22px;
+  padding: 0 22px;
   animation: wt-btn_sign-marquee 2s linear infinite;
 }
 
 .wt-btn_sign-bound span:after {
-  content:attr(data-text);
+  content: attr(data-text);
   position: absolute;
   left: 100%;
   padding: 0 23px;
@@ -105,84 +107,50 @@ html, body{
 
 
 @keyframes wt-btn_sign-marquee {
-  0%{
-      transform: translate3d(0,0,0)
-    }
-  100%{
-      transform: translate3d(-100%,0,0)
-    }
-}
-
-.cs-loader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 30%;
-  width: 30%;
-}
-
-.cs-loader-inner {
-  transform: translateY(-50%);
-  top: 50%;
-  position: absolute;
-  width: calc(100% - 200px);
-  color: #FFF;
-  padding: 0 100px;
-  text-align: center;
-}
-
-.cs-loader-inner label {
-  font-size: 20px;
-  opacity: 0;
-  display:inline-block;
-}
-
-@keyframes lol {
   0% {
-    opacity: 0;
-    transform: translateX(-300px);
+    transform: translate3d(0, 0, 0)
   }
-  33% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-  66% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
+
   100% {
-    opacity: 0;
-    transform: translateX(300px);
+    transform: translate3d(-100%, 0, 0)
   }
 }
 
-
-.cs-loader-inner label:nth-child(6) {
-
-  animation: lol 3s infinite ease-in-out;
+.overlay {
+  margin-bottom: 150px;
+  width: 100%;
+  height: 100vh;
+  background: transparent;
+  transition: all 0.5s;
 }
 
-.cs-loader-inner label:nth-child(5) {
-
-  animation: lol 3s 100ms infinite ease-in-out;
+.dual-ring-loader {
+  width: 80px;
+  height: 80px;
 }
 
-.cs-loader-inner label:nth-child(4) {
-
-  animation: lol 3s 200ms infinite ease-in-out;
+.dual-ring-loader:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: dual-ring-loader 1.2s linear infinite;
 }
 
-.cs-loader-inner label:nth-child(3) {
+@keyframes dual-ring-loader {
+  0% {
+    transform: rotate(0deg);
+  }
 
-  animation: lol 3s 300ms infinite ease-in-out;
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.cs-loader-inner label:nth-child(2) {
-
-  animation: lol 3s 400ms infinite ease-in-out;
-}
-
-.cs-loader-inner label:nth-child(1) {
-
-  animation: lol 3s 500ms infinite ease-in-out;
+.loader-container {
+  height: 100%
 }
