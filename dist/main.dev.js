@@ -114,8 +114,8 @@ function populateInspirePage() {
     var quoteTextContainer = document.createElement('div');
     var quoteText = document.createElement('div');
     var quoteRow = document.createElement('div');
-    quoteRow.classList.add('row', 'justify-content-center');
-    $quote.classList.add("quote-box", 'justify-content-center', 'view');
+    quoteRow.classList.add('row', 'justify-content-center', 'quote-row');
+    $quote.classList.add('row', "quote-box", 'justify-content-center', 'view');
     quoteTextContainer.classList.add('quote-text-container');
     quoteText.classList.add("quote-text");
     quoteText.innerText = "".concat(quote.quote.quoteText, "\n\n    -").concat(quote.quote.quoteAuthor);
