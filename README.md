@@ -1,5 +1,5 @@
 # feeling-dumb
-A hackathon project utlizing the data from two public APIs to create app that generates two quotes for the user. sdf
+A hackathon project utlizing the data from two public APIs to create app that generates two quotes for the user.
 
 ## Technologies
 
