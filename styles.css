@@ -4,6 +4,7 @@ body {
   color: white;
   font-family: 'Cookie', cursive;
   height: 100%;
+  min-height: 100vh;
 }
 
 .circle {
@@ -45,6 +46,7 @@ body {
   margin-top: 50px;
   border-style: none;
   background: linear-gradient(#F4A896, rgb(218, 167, 216));
+  cursor: pointer;
 }
 
 .hidden {
@@ -61,12 +63,14 @@ body {
   position: absolute;
   height: 80%;
   opacity: 95%;
-  width: 100%;
+  align-items: center;
 }
+
 
 .quote-text-container {
   margin-top: 30px;
   width: 80%;
+  vertical-align: middle;
 }
 
 .quote-text {
