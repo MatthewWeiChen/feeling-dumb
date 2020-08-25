@@ -193,6 +193,9 @@
     cursor: pointer;
   }
 
+  .heading-selection {
+    margin-top: 20px;
+  }
 
   html,
   body {
