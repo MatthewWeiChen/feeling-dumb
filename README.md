@@ -34,10 +34,7 @@ https://matthewweichen.github.io/feeling-dumb/
 
 ## Preview
 
-<p align="middle">
-  <img src="feeling-dumb-gif" alt="Feeling Dumb Preview">
-</p>
-
+![](feeling-dumb-gif.gif)
 
 
 ## Getting Started
