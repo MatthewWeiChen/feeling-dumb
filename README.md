@@ -1,11 +1,7 @@
 # feeling-dumb
 A hackathon project utlizing the data from two public APIs to create app that generates two quotes for the user.
 
-## Introduction
-
-For this project, you will be building a single-page JavaScript application that communicates with a server to manipulate a collection of student grades.
-
-You'll be using the following technologies in your implementation:
+## Technologies
 
 - HTML
 - CSS
