@@ -120,7 +120,7 @@ function populateInspirePage() {
     const quoteText = document.createElement('div');
     const quoteRow = document.createElement('div');
     quoteRow.classList.add('row', 'justify-content-center', 'quote-row')
-    $quote.classList.add("quote-box", "row", 'justify-content-center', 'view');
+    $quote.classList.add('row', "quote-box", 'justify-content-center', 'view');
     quoteTextContainer.classList.add('quote-text-container')
     quoteText.classList.add("quote-text");
     quoteText.innerText = `${quote.quote.quoteText}
