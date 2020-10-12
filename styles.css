@@ -1,4 +1,7 @@
 @media screen and (orientation: portrait) {
+  html{
+    overflow: hidden;
+  }
 
   html,
   body {
@@ -6,7 +9,6 @@
     color: white;
     font-family: 'Cookie', cursive;
     height: 100vh;
-    overflow: hidden;
   }
 
   .circle {
@@ -63,7 +65,8 @@
   .quote-box {
     background-color: #F4A896;
     position: absolute;
-    height: 80%;
+    height: 80vh;
+    width: 100%;
     opacity: 95%;
     align-items: center;
   }
@@ -167,8 +170,6 @@
 
 }
 
-
-
 @media screen and (orientation: landscape) {
 
   html,
@@ -176,8 +177,7 @@
     background-image: linear-gradient(#358597, #8fcad6);
     color: white;
     font-family: 'Cookie', cursive;
-    height: 100%;
-    min-height: 100vh;
+    height: 100vh;
     overflow: hidden;
   }
 
