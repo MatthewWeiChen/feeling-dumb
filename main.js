@@ -19,7 +19,7 @@ clickHereBtn.addEventListener('click', () => {
   showView('selection')
 })
 
-let dumbQuoteBtn = document.querySelectorAll('button')[1];
+let dumbQuoteBtn = document.querySelector('#go-to-dumb');
 dumbQuoteBtn.addEventListener("click", populateDumbPage);
 let inspirationQuoteBtn = document.querySelector('#go-to-inspire')
 inspirationQuoteBtn.addEventListener("click", populateInspirePage)
@@ -65,14 +65,19 @@ function populateDumbPage(event) {
   }
 
   function quoteRetrievalFailed(err) {
+    const $errorContainer = document.createElement('div')
     const $error = document.createElement('div');
     const $errorBtn = document.createElement('button');
-    $errorBtn.classList.add('btn-custom', 'absolute-position')
+    $errorBtn.classList.add('btn-custom')
+    $errorContainer.classList.add('center-error', 'mt-5')
     $errorBtn.append($error);
     $error.textContent = "Error - Try Again"
-    container.append($errorBtn);
+    $errorContainer.append($errorBtn)
+    container.append($errorContainer);
 
     $errorBtn.addEventListener('click', () => {
+      $errorBtn.setAttribute("disabled", "")
+
       $.ajax({
         Method: "GET",
         url: "https://tronalddump.io/random/quote",
@@ -80,11 +85,12 @@ function populateDumbPage(event) {
           $("#loader").removeClass('hidden');
         },
         success: function (quote) {
-          $errorBtn.remove();
+          $errorContainer.remove();
           quoteReceived(quote);
         },
         complete: function () {
           $("#loader").addClass('hidden');
+          $(".btn-custom").attr("disabled", false);
         },
       })
     })
@@ -133,14 +139,18 @@ function populateInspirePage() {
   }
 
   function quoteRetrievalFailed(err) {
+    const $errorContainer = document.createElement('div')
     const $error = document.createElement('div');
     const $errorBtn = document.createElement('button');
-    $errorBtn.classList.add('btn-custom', 'absolute-position')
+    $errorBtn.classList.add('btn-custom')
+    $errorContainer.classList.add('center-error', 'mt-5')
     $errorBtn.append($error);
     $error.textContent = "Error - Try Again"
-    container.append($errorBtn);
+    $errorContainer.append($errorBtn)
+    container.append($errorContainer);
 
     $errorBtn.addEventListener('click', () => {
+      $errorBtn.setAttribute("disabled", "")
       $.ajax({
         Method: "GET",
         url: "https://quote-garden.herokuapp.com/api/v2/quotes/random",
@@ -148,11 +158,12 @@ function populateInspirePage() {
           $("#loader").removeClass('hidden');
         },
         success: function (quote) {
-          $errorBtn.remove();
+          $errorContainer.remove();
           quoteReceived(quote);
         },
         complete: function () {
           $("#loader").addClass('hidden');
+          $(".btn-custom").attr("disabled", false);
         },
       })
     })

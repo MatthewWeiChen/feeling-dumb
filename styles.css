@@ -163,10 +163,13 @@
     height: 100%
   }
 
-  .absolute-position {
-    position: absolute;
-    margin-left: 100px;
+  .center-error{
+    display:flex;
+    justify-content: center;
+    align-items: center;
   }
+
+
 
 }
 
@@ -331,8 +334,10 @@
     height: 100%
   }
 
-  .absolute-position {
-    position: absolute;
-    margin-left: 100px;
+  .center-error {
+    display:flex;
+    justify-content: center;
+    align-items: center;
   }
+
 }
